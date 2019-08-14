@@ -32,6 +32,11 @@ cache-test: $(EXEC)
 		-e cache-misses,cache-references,instructions,cycles \
 		./matrix
 
+branch-cache-test: $(EXEC)
+	perf stat --repeat 5 \
+		-e cache-misses,cache-references,instructions,cycles \
+		./branch
+
 plot: output.txt
 	gnuplot scripts/runtime.gp
 
