@@ -1,7 +1,7 @@
 CC ?= gcc
 CFLAGS ?= -Wall -std=gnu99 -g3 -DDEBUG -O0
 
-EXEC = pi matrix
+EXEC = pi matrix branch
 GIT_HOOKS := .git/hooks/applied
 .PHONY: all
 all: $(GIT_HOOKS) $(EXEC)
@@ -20,6 +20,11 @@ pi: $(SRCS_common) pi.c
 matrix: $(SRCS_common) matrix.c
 	$(CC) $(CFLAGS_common) \
 		-o $@ -DMATRIX -DHEADER="\"$@.h\"" \
+		$(SRCS_common) $@.c
+
+branch: $(SRCS_common) branch.c
+	$(CC) $(CFLAGS_common) \
+		-o $@ -DBRANCH -DHEADER="\"$@.h\"" \
 		$(SRCS_common) $@.c
 
 cache-test: $(EXEC)
