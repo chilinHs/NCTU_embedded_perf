@@ -4,6 +4,8 @@
 #include <unistd.h>
 #include <time.h>
 
+int sr1[10000000], sr2[10000000], result[20000000];
+
 int main(void)
 {
 #if defined(PI)
@@ -15,13 +17,12 @@ int main(void)
     matrix(10000,10000,array);
 #elif defined(BRANCH)
     int i;
-    int sr1[100000], sr2[100000], result[200000];
     srand(time(NULL));
-    for (i=0; i< 100000; i++) {
+    for (i=0; i< 10000000; i++) {
         sr1[i] = rand()%100;
         sr2[i] = rand()%100;
     }
-    merge(sr1, sr2, result, 100000);
+    merge(sr1, sr2, result, 10000000);
 #endif
     return 0;
 
